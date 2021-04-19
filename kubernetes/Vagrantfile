@@ -1,0 +1,62 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV['VAGRANT_NO_PARALLEL'] = 'yes'
+
+Vagrant.configure(2) do |config|
+
+  config.vm.provision "shell", path: "bootstrap.sh"
+
+  # Kubernetes Master Server
+  config.vm.define "kmaster.example.com" do |node|
+  
+    node.vm.box = "mkoellges/my-ubuntu"
+    node.vm.box_version = "0"
+    node.vm.box_check_update = false
+    node.ssh.username = 'root'
+    node.ssh.password = 'root'
+    node.ssh.insert_key = 'true'
+    node.vm.hostname = "kmaster"
+    node.vm.network "private_network", ip: "10.37.129.100"
+  
+    node.vm.provider "parallels" do |v|
+      v.name = "kmaster"
+      v.memory = 2048
+      v.cpus = 2
+    end
+  
+    node.vm.provision "shell", path: "bootstrap_kmaster.sh"
+  
+  end
+
+
+  # Kubernetes Worker Nodes
+  NodeCount = 2
+
+  (1..NodeCount).each do |i|
+
+    config.vm.define "kworker#{i}" do |node|
+
+      node.vm.box = "mkoellges/my-ubuntu"
+      node.vm.box_version = "0"
+      node.vm.box_check_update = false
+      node.vm.box_check_update = false
+      node.ssh.username = 'root'
+      node.ssh.password = 'root'
+      node.ssh.insert_key = 'true'
+      node.vm.hostname = "kworker#{i}.example.com"
+      node.vm.network "private_network", ip: "10.37.129.10#{i}"
+
+      node.vm.provider "parallels" do |v|
+        v.name = "kworker#{i}"
+        v.memory = 1024
+        v.cpus = 1
+      end
+
+      node.vm.provision "shell", path: "bootstrap_kworker.sh"
+
+    end
+
+  end
+
+end
