@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |cf|
   # NFS Server
   cf.vm.define "nfs-server" do |nfs|
-    nfs.vm.box = "mkoellges/ubuntu"
+    nfs.vm.box = "mykoellges/ubuntu"
     nfs.vm.box_version = "20.04"
     nfs.vm.box_check_update = false
     nfs.ssh.username = 'root'
