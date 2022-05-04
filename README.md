@@ -2,7 +2,7 @@
 
 To bring the services to life at ista in VPN environment, you need to add a new VBox private Network first and disable the network running in range 172.16.0.0/12.  This network is used for french servers.
 
-The kubernetes-cluster vagrant provisioning creates a Kubernetes cluster with 1 admin node (kadmin) and 2 worker nodes (kworker 1 and 2). The machines will always get the same IP addresses - but you need to check your private VBox network what IP range it would be. Then add it to your /etc/hosts file.
+The kubernetes-cluster vagrant provisioning creates a Kubernetes cluster with 1 admin node (kadmin) and 3 worker nodes (kworker 1,2 and 3). The machines will always get the same IP addresses - but you need to check your private VBox network what IP range it would be. Then add it to your /etc/hosts file.
 
 The nfs-server is a profile that creates an nfs-server that can be used for persistant storage in the kubernetes cluster using the nfs-provisioner.
 
