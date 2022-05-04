@@ -6,7 +6,8 @@ cat >>/etc/hosts<<EOF
 10.37.129.100   kmaster.example.com     kmaster
 10.37.129.101   kworker1.example.com    kworker1
 10.37.129.102   kworker2.example.com    kworker2
-10.37.129.103   nfs-server.example.com  nfs-server
+10.37.129.103   kworker3.example.com    kworker3
+10.37.129.110   nfs-server.example.com  nfs-server
 EOF
 
 echo "[TASK 2] Download and install NFS server"
