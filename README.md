@@ -22,4 +22,5 @@ To ensure that the K8S cluster works correctly, label the worker nodes as worker
 ```sh
 kubectl label node kworker1 node-role.kubernetes.io/worker=worker
 kubectl label node kworker2 node-role.kubernetes.io/worker=worker
+kubectl label node kworker3 node-role.kubernetes.io/worker=worker
 ```
